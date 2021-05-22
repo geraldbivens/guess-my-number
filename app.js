@@ -8,14 +8,48 @@ const currentScore = document.querySelector('.score');
 const currentHighScore = document.querySelector('.high-score');
 
 let secretNumberValue = Math.trunc(Math.random() * 20) + 1;
+// secretNumber.textContent = secretNumberValue;
 let score = 20;
 let highscore = 0;
 
-// secretNumber.textContent = secretNumberValue;
+// checkButton.addEventListener('click', function () {
+//   const guessValue = Number(guessInput.value);
 
+//   if (!guessValue) {
+//     message.textContent = 'Please guess a number between 1-20';
+//   } else if (guessValue === secretNumberValue) {
+//     message.textContent = 'CONGRATULATIONS, YOU WIN!';
+//     background.style.backgroundColor = '#60b347';
+//     secretNumber.style.width = '30rem';
+
+//     if (score > highscore) {
+//       highscore = score;
+//       currentHighScore.textContent = highscore;
+//     }
+//   } else if (guessValue > secretNumberValue) {
+//     if (score > 1) {
+//       message.textContent = 'Too high!';
+//       score--;
+//       currentScore.textContent = score;
+//     } else {
+//       message.textContent = 'Sorry, you lose!';
+//       currentScore.textContent = 0;
+//     }
+//   } else if (guessValue < secretNumberValue) {
+//     if (score > 1) {
+//       message.textContent = 'Too low!';
+//       score--;
+//       currentScore.textContent = score;
+//     } else {
+//       message.textContent = 'Sorry, you lose!';
+//       currentScore.textContent = 0;
+//     }
+//   }
+// });
+
+// DRY refactor
 checkButton.addEventListener('click', function () {
   const guessValue = Number(guessInput.value);
-  console.log(guessValue, typeof guessValue);
 
   if (!guessValue) {
     message.textContent = 'Please guess a number between 1-20';
@@ -23,23 +57,15 @@ checkButton.addEventListener('click', function () {
     message.textContent = 'CONGRATULATIONS, YOU WIN!';
     background.style.backgroundColor = '#60b347';
     secretNumber.style.width = '30rem';
+
     if (score > highscore) {
       highscore = score;
       currentHighScore.textContent = highscore;
     }
-  } else if (guessValue > secretNumberValue) {
+  } else if (guessValue !== secretNumberValue) {
     if (score > 1) {
-      message.textContent = 'Too high!';
-      // score = score - 1;
-      score--;
-      currentScore.textContent = score;
-    } else {
-      message.textContent = 'Sorry, you lose!';
-      currentScore.textContent = 0;
-    }
-  } else if (guessValue < secretNumberValue) {
-    if (score > 1) {
-      message.textContent = 'Too low!';
+      message.textContent =
+        guessValue > secretNumberValue ? 'Too high!' : 'Too low!';
       score--;
       currentScore.textContent = score;
     } else {
@@ -58,8 +84,4 @@ playAgainButton.addEventListener('click', function () {
   currentScore.textContent = score;
   background.style.backgroundColor = '#222';
   secretNumber.style.width = '15rem';
-});
-
-playAgainButton.addEventListener('click', function () {
-  window.location.reload();
 });
