@@ -1,3 +1,4 @@
+const background = document.querySelector('body');
 const secretNumber = document.querySelector('.secret-number');
 const guessInput = document.querySelector('.guess');
 const checkButton = document.querySelector('.check');
@@ -17,6 +18,8 @@ checkButton.addEventListener('click', function () {
     message.textContent = 'Please guess a number between 1-20';
   } else if (guessValue === secretNumberValue) {
     message.textContent = 'CONGRATULATIONS, YOU WIN!';
+    background.style.backgroundColor = '#60b347';
+    secretNumber.style.width = '30rem';
   } else if (guessValue > secretNumberValue) {
     if (score > 1) {
       message.textContent = 'Too high!';
