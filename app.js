@@ -1,4 +1,5 @@
 const background = document.querySelector('body');
+const playAgainButton = document.querySelector('.play-again');
 const secretNumber = document.querySelector('.secret-number');
 const guessInput = document.querySelector('.guess');
 const checkButton = document.querySelector('.check');
@@ -40,4 +41,8 @@ checkButton.addEventListener('click', function () {
       currentScore.textContent = 0;
     }
   }
+});
+
+playAgainButton.addEventListener('click', function () {
+  window.location.reload();
 });
